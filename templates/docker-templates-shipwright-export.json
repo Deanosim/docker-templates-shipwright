@@ -1,0 +1,214 @@
+{
+  "title": "docker-templates-shipwright",
+  "containers": [
+    {
+      "title": "apt-cacher-ng",
+      "name": "apt-cacher-ng",
+      "image": "mbentley/apt-cacher-ng",
+      "description": "Apt-Cacher NG is a caching proxy, specialized for package files from Linux distributors, primarily for Debian (and Debian based) distributions but not limited to those.",
+      "categories": [
+        "Network:Proxy",
+        "Network",
+        "Proxy",
+        "Other",
+        "Tools"
+      ],
+      "platform": "linux",
+      "note": "",
+      "restart_policy": "always",
+      "ports": [
+        {
+          "label": "Proxy",
+          "hport": "3142",
+          "cport": "3142",
+          "proto": "tcp"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/var/cache/apt-cacher-ng",
+          "bind": "",
+          "variable": "cache storage"
+        }
+      ],
+      "env": [],
+      "command": [],
+      "devices": [],
+      "labels": [],
+      "sysctls": [],
+      "cap_add": [],
+      "logo": "https://github.com/Deanosim/docker-templates-unraid/raw/master/templates/images/apt-cacher.png",
+      "network_mode": "host",
+      "mem_limit": "300m"
+    },
+    {
+      "title": "lancache-dns",
+      "name": "lancache-dns",
+      "image": "lancachenet/lancache-dns:latest",
+      "description": "This docker container provides DNS entries for caching services to be used in conjunction with a steamcache/steamcache &amp;amp; steamcache/generic server.&#xD;\n&#xD;\nThe DNS is generated automatically at startup of the container, the list of supported services is available here: https://github.com/uklans/cache-domains",
+      "categories": [
+        "Network",
+        "Cache",
+        "Proxy",
+        "Gaming",
+        "DNS"
+      ],
+      "platform": "linux",
+      "note": "",
+      "restart_policy": "always",
+      "ports": [],
+      "volumes": [],
+      "env": [
+        {
+          "name": "USE_GENERIC_CACHE",
+          "default": "true"
+        },
+        {
+          "name": "LANCACHE_IP",
+          "default": "192.168.1.200",
+          "description": "IP Address with for main lancache server."
+        },
+        {
+          "name": "UPSTREAM_DNS",
+          "default": "192.168.1.202",
+          "description": "Upstream DNS server"
+        }
+      ],
+      "command": [],
+      "devices": [],
+      "labels": [],
+      "sysctls": [],
+      "cap_add": [],
+      "logo": "https://secure.gravatar.com/avatar/0aad6676f3d1456ed109787f3b51db07.jpg?s=80&amp;amp;r=g&amp;amp;d=mm<",
+      "network_mode": "host"
+    },
+    {
+      "title": "lancache-monolithic",
+      "name": "lancache-monolithic",
+      "image": "lancachenet/monolithic",
+      "description": "",
+      "categories": [
+        "Network",
+        "Proxy",
+        "Cache",
+        "Gaming"
+      ],
+      "platform": "linux",
+      "note": "",
+      "restart_policy": "always",
+      "ports": [
+        {
+          "label": "",
+          "hport": "80",
+          "cport": "80",
+          "proto": "tcp"
+        },
+        {
+          "label": "",
+          "hport": "443",
+          "cport": "443",
+          "proto": "tcp"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/data/cache",
+          "bind": "/mnt/user/ServerData/lancache/",
+          "variable": "!lancache-data"
+        },
+        {
+          "container": "/data/logs",
+          "bind": "/mnt/user/appdata/lancache/logs/",
+          "variable": "!lancache-logs"
+        }
+      ],
+      "env": [
+        {
+          "name": "UPSTREAM_DNS",
+          "default": "1.1.1.1",
+          "description": "UPSTREAM_DNS",
+          "label": "UPSTREAM_DNS"
+        },
+        {
+          "name": "CACHE_MEM_SIZE",
+          "default": "512m",
+          "description": "CACHE_MEM_SIZE",
+          "label": "CACHE_MEM_SIZE"
+        },
+        {
+          "name": "CACHE_DISK_SIZE<",
+          "default": "4096g",
+          "description": "CACHE_DISK_SIZE<",
+          "label": "CACHE_DISK_SIZE<"
+        },
+        {
+          "name": "LOGFILE_RETENTION",
+          "default": "180",
+          "description": "LOGFILE_RETENTION",
+          "label": "LOGFILE_RETENTION"
+        },
+        {
+          "name": "CACHE_MAX_AGE",
+          "default": "180d",
+          "description": "CACHE_MAX_AGE",
+          "label": "CACHE_MAX_AGE"
+        }
+      ],
+      "command": [],
+      "devices": [],
+      "labels": [
+        {
+          "label": "diun.enable",
+          "value": "true",
+          "variable": ""
+        }
+      ],
+      "sysctls": [],
+      "cap_add": [],
+      "logo": "https://secure.gravatar.com/avatar/0aad6676f3d1456ed109787f3b51db07.jpg?s=80&amp;amp;amp;amp;r=g&amp;amp;amp;amp;d=mm",
+      "network_mode": "host"
+    },
+    {
+      "title": "Gotify",
+      "name": "Gotify",
+      "image": "gotify/server",
+      "description": "a simple server for sending and receiving messages   Converted By Community Applications   Always verify this template (and values) against the dockerhub support page for the container",
+      "categories": [
+        "Notifications",
+        "Tools"
+      ],
+      "platform": "linux",
+      "note": "",
+      "restart_policy": "always",
+      "ports": [
+        {
+          "label": "WebUI",
+          "hport": "80",
+          "cport": "80",
+          "proto": "tcp"
+        }
+      ],
+      "volumes": [
+        {
+          "container": "/app/data",
+          "bind": "/mnt/user/appdata/gotify"
+        }
+      ],
+      "env": [],
+      "command": [],
+      "devices": [],
+      "labels": [
+        {
+          "label": "duin.enable",
+          "value": "true",
+          "variable": "!duin.enable"
+        }
+      ],
+      "sysctls": [],
+      "cap_add": [],
+      "logo": "https://avatars.githubusercontent.com/u/36410427?s=200&v=4",
+      "network_mode": "bridge",
+      "mem_limit": "100m"
+    }
+  ]
+}

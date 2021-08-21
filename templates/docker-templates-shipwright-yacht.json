@@ -188,5 +188,56 @@
     "logo": "https://avatars.githubusercontent.com/u/36410427?s=200&v=4",
     "network_mode": "bridge",
     "mem_limit": "100m"
+  },
+  {
+    "title": "Nextcloud",
+    "name": "Nextcloud",
+    "image": "linuxserver/nextcloud",
+    "description": "Nextcloud is an open source, self-hosted file sync and communication app platform. Access and sync your files, contacts, calendars and communicate and collaborate across your devices. You decide what happens with your data, where it is and who can access it!",
+    "categories": [
+      "Cloud:",
+      "Productivity:",
+      "MediaServer:Other",
+      "Network:Web",
+      "Status:Stable",
+      "Tools:"
+    ],
+    "platform": "linux",
+    "note": "",
+    "restart_policy": "always",
+    "ports": [
+      {
+        "WebUI": "443:443/tcp"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/data",
+        "bind": "!nextcloud-data"
+      },
+      {
+        "container": "/config",
+        "bind": "!nextcloud-config"
+      }
+    ],
+    "env": [
+      {
+        "name": "",
+        "default": ""
+      }
+    ],
+    "command": [],
+    "devices": [],
+    "labels": [
+      {
+        "label": "diun.enable",
+        "value": "diun.enable",
+        "variable": "true"
+      }
+    ],
+    "sysctls": [],
+    "cap_add": [],
+    "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nextcloud-icon.png",
+    "network_mode": "bridge"
   }
 ]

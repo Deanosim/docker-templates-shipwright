@@ -208,6 +208,37 @@
             "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nextcloud-icon.png",
             "network_mode": "bridge",
             "type": 1
+        },
+        {
+            "title": "Statping-ng",
+            "name": "Statping-ng",
+            "image": "adamboutcher/statping-ng",
+            "description": "An easy to use Status Page for your websites and applications. Statping-ng will automatically fetch the application and render a beautiful status page with tons of features for you to build an even better status page.",
+            "categories": [
+                "Network:Web",
+                "Network:Management"
+            ],
+            "platform": "linux",
+            "restart_policy": "always",
+            "ports": [
+                "8366:8080/tcp"
+            ],
+            "volumes": [
+                {
+                    "container": "/app",
+                    "bind": "/mnt/user/appdata/statping-ng"
+                }
+            ],
+            "labels": [
+                {
+                    "label": "duin.enable",
+                    "value": "true",
+                    "variable": ""
+                }
+            ],
+            "network_mode": "bridge",
+            "mem_limit": "200m",
+            "type": 1
         }
     ]
 }
